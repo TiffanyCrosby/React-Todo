@@ -23,6 +23,7 @@ class TodoForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input
+                        className='inputField'
                         type='text'
                         name='item'
                         value={this.state.item}

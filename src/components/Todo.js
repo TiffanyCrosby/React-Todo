@@ -5,6 +5,7 @@ function Todo(props) {
     return (
         <div className={`task${props.item.completed ? ' completed' : ''}`}
             onClick={() => props.toggleCompleted(props.item.id)}>
+            <br />
             <label>
                 <input
                     type='checkbox'

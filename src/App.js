@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm'
+import './App.css'
 
 let toDoItems = [
   {
@@ -75,8 +76,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <header>To Do List:</header>
+      <div className='body'>
+        <h1>To Do List:</h1>
         <br />
         <TodoForm addToDo={this.addToDo} />
         <br />
