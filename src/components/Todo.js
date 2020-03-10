@@ -1,9 +1,17 @@
 import React from 'react'
+import "./Todo.css"
 
 function Todo(props) {
     return (
-        <div onClick={() => props.itemCompleted(props.item.id)}>
-            {props.item.item}
+        <div className={`task${props.item.completed ? ' completed' : ''}`}
+            onClick={() => props.toggleCompleted(props.item.id)}>
+            <label>
+                <input
+                    type='checkbox'
+                    checked={props.item.completed}
+                    onChange={() => props.toggleCompleted(props.item.id)}
+                />{props.item.task}
+            </label>
         </div>
     )
 }

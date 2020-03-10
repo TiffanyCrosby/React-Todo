@@ -8,14 +8,14 @@ class TodoForm extends Component {
         }
     }
 
-    handleChanges = event => {
-        this.setState({ item: event.target.value })
+    handleChanges = e => {
+        this.setState({ item: e.target.value })
     }
 
-    handleSubmit = event => {
-        this.props.addItem(this.state.item)
+    handleSubmit = e => {
+        e.preventDefault()
+        this.props.addToDo(this.state.item)
         this.setState({ item: '' })
-        event.preventDefault()
     }
 
     render() {
@@ -26,14 +26,11 @@ class TodoForm extends Component {
                         type='text'
                         name='item'
                         value={this.state.item}
+                        placeholder='Add Your To Do Item'
                         onChange={this.handleChanges}
                     />
                     <button>Add</button>
                 </form>
-                <br />
-                <button className="clear-btn" onClick={this.props.clearTasks}>
-                    Clear Completed Tasks
-            </button>
             </div>
         )
     }

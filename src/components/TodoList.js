@@ -1,16 +1,20 @@
 import React from 'react'
 import Todo from './Todo'
 
-function TodoList(props) {
+const TodoList = props => {
     return (
         <div>
-            {props.todoItems.map(item => {
-                <Todo
+            {props.toDoItems.map(item => (
+                < Todo
                     key={item.id}
                     item={item}
-                    itemCompleted={props.itemCompleted}
+                    toggleCompleted={props.toggleCompleted}
                 />
-            })}
+            ))}
+            <br />
+            <button className="clear-btn" onClick={props.clearCompleted}>
+                Clear Completed Tasks
+            </button>
         </div>
     )
 }

@@ -2,35 +2,35 @@ import React, { Component } from 'react'
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm'
 
-const toDoItems = [
+let toDoItems = [
   {
-    id: 1528817084358,
     task: 'Bake Cookies',
+    id: 1528817084358,
     completed: false
 
   },
 
   {
-    id: 1528817077286,
     task: 'Organize Garage',
+    id: 1528817077286,
     completed: false
   },
 
   {
-    id: 1528817070843,
     task: 'Finish Project',
+    id: 1528817070843,
     completed: false
   },
 
   {
-    id: 15288489657265,
     task: 'Acrobatics',
+    id: 15288489657265,
     completed: false
   },
 
   {
-    id: 152889536749854,
     task: 'Dinner',
+    id: 152889536749854,
     completed: false
   }
 ]
@@ -38,22 +38,25 @@ const toDoItems = [
 class App extends Component {
   constructor() {
     super()
-    this.state = {
-      toDoItems,
-      task: ''
-    }
+    this.state = { toDoItems }
   }
 
-  clearTasks = toDoItems.filter(event => {
-    return event.done === true
-  })
+  clearCompleted = () => {
+    this.setState({
+      toDoItems: this.state.toDoItems.filter(item => {
+        if (item.completed) {
+          return null
+        } return item
+      })
+    })
+  }
 
-  itemCompleted = clickedItemId => {
+  toggleCompleted = clickedItemId => {
     this.setState({
       toDoItems: this.state.toDoItems.map(item => {
         if (item.id === clickedItemId) {
           return { ...item, completed: !item.completed }
-        } else { return item }
+        } return item
       })
     })
   }
@@ -61,8 +64,8 @@ class App extends Component {
   addToDo = itemName => {
     this.setState({
       toDoItems: [...this.state.toDoItems, {
-        id: new Date(),
         task: itemName,
+        id: Date.now(),
         completed: false
       }]
     });
@@ -74,8 +77,10 @@ class App extends Component {
     return (
       <div>
         <header>To Do List:</header>
-        <TodoForm addToDo={this.addToDo} clearTasks={this.clearTasks} />
-        <TodoList toDoItems={this.state.toDoItems} itemCompleted={this.itemCompleted} />
+        <br />
+        <TodoForm addToDo={this.addToDo} />
+        <br />
+        <TodoList toDoItems={this.state.toDoItems} clearCompleted={this.clearCompleted} toggleCompleted={this.toggleCompleted} />
       </div>
     )
   }
